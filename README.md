@@ -24,6 +24,14 @@ Run:
 
 ``` composer install ```
 
+App will be available at
+
+``` localhost:8080 ```
+
+Phpmyadmin will be available at
+
+``` localhost:8081 ```
+
 # Usage
 
 Create User:
