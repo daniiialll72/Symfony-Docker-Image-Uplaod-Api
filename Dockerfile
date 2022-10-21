@@ -16,7 +16,3 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 RUN git config --global user.email "daniiialllkhalediii@gmail.com" \ 
     && git config --global user.name "Danial Khaledi"
-
-RUN echo $(pwd)
-
-COPY . /var/www/symfony_docker/
