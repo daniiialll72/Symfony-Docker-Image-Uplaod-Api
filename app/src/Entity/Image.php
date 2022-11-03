@@ -48,6 +48,7 @@ class Image
     {
         $this->user = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->created_at = new \DateTime();
     }
 
     public function getId(): ?int
