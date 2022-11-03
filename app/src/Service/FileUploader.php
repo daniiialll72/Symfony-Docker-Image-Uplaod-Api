@@ -34,6 +34,7 @@ class FileUploader
             $response = new Response();
             $response->setContent($errorMessage);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+            return $response;
         }
 
         return $fileName;

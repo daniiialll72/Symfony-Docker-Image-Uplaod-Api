@@ -36,13 +36,13 @@ class ImageController extends AbstractController
             $images = $imageRepository
                 ->findAll();
             $data = [];
-            foreach($images as $image){
-                $data = [
+            foreach ($images as $image) {
+                $data[] = [
                     'id' => $image->getId(),
                     'provider' => $image->getProvider(),
-                    'tags' => array_map(function($item){
+                    'tags' => array_map(function ($item) {
                         return $item->getTitle();
-                    },$image->getTags()->toArray()),
+                    }, $image->getTags()->toArray()),
                     'path' => $image->getFilePath()
                 ];
             }
@@ -52,6 +52,8 @@ class ImageController extends AbstractController
             $response = new Response();
             $response->setContent($errorMessage);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+
+            return $response;
         }
     }
 
@@ -72,13 +74,13 @@ class ImageController extends AbstractController
                 });
             }
             $data = [];
-            foreach($res as $item){
+            foreach ($res as $item) {
                 $data = [
                     'id' => $item->getId(),
                     'provider' => $item->getProvider(),
-                    'tags' => array_map(function($item){
+                    'tags' => array_map(function ($item) {
                         return $item->getTitle();
-                    },$item->getTags()->toArray()),
+                    }, $item->getTags()->toArray()),
                     'path' => $item->getFilePath()
                 ];
             }
@@ -88,6 +90,8 @@ class ImageController extends AbstractController
             $response = new Response();
             $response->setContent($errorMessage);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+
+            return $response;
         }
     }
 
@@ -111,7 +115,6 @@ class ImageController extends AbstractController
                 $image->addTag($tag);
                 $this->entityManager->persist($tag);
             }
-
             $this->entityManager->persist($image);
             $this->entityManager->flush();
 
@@ -121,6 +124,8 @@ class ImageController extends AbstractController
             $response = new Response();
             $response->setContent($errorMessage);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+
+            return $response;
         }
     }
 }

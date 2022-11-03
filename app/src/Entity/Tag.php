@@ -10,19 +10,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
-#[UniqueEntity(
-    fields: ['title'],
-    message: 'This title is already exists',
-)]
+// #[UniqueEntity(
+//     fields: ['title'],
+//     message: 'This title is already exists',
+// )]
 class Tag
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
     #[ORM\Column(length: 50, unique: true)]
-    #[Assert\Unique]
+    // #[Assert\Unique]
     private ?string $title = null;
 
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'tags')]
@@ -46,7 +45,6 @@ class Tag
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Tag;
 use App\Entity\User;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ImageRepository;
 use Doctrine\Common\Collections\Collection;
@@ -39,6 +40,9 @@ class Image
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'image')]
     #[Assert\Unique]
     private Collection $tags;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $created_at = null;
 
     public function __construct()
     {
@@ -122,6 +126,18 @@ class Image
         if ($this->tags->removeElement($tag)) {
             $tag->removeImage($this);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

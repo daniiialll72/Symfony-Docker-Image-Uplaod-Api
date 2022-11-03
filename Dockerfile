@@ -11,6 +11,7 @@ RUN apt update \
 WORKDIR /var/www/symfony_docker
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN usermod -u 1000 www-data && chown -R www-data:www-data /var/www/symfony_docker
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony

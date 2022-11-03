@@ -50,6 +50,7 @@ class UserController extends AbstractController
             $response = new Response();
             $response->setContent($errorMessage);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+            return $response;
         }
     }
 
@@ -77,6 +78,7 @@ class UserController extends AbstractController
             $response = new Response();
             $response->setContent($errorMessage);
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+            return $response;
         }
     }
 }
