@@ -10,17 +10,23 @@ Symfony-Docker customized to implement simple api for upload images
 
 Run:
 
-``` docker compose build --pull --no-cache ```
+``` sudo docker compose build --pull --no-cache ```
 
 And Then
 
-``` docker compose up -d ```
+``` sudo docker compose up -d ```
 
-Then navigate to php app container 
+After all your containers were up successfully you can check by running:
+
+``` sudo docker ps -a```
+
+Then you must have 4 running containers including : php, database, pma, nginx
+
+In order to work with application we need to navigate to php container so we use command below:
 
 ``` sudo docker compose exec php /bin/bash ```
 
-Run:
+then wehn we are in the php container we need to run:
 
 ``` composer install ```
 
@@ -34,8 +40,8 @@ Phpmyadmin will be available at
 
 # Usage
 
-Create User:
+First we need to create some users:
 
-In the app container use command below:
+In the php container use command below:
 
 ``` symfony console create-user ```
